@@ -1,0 +1,314 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* Barra flotante WhatsApp */
+.floating-wpp {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1040;
+  padding: 0.75rem 1rem;
+  background-color: #d63347;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.floating-wpp-label {
+  font-size: 0.95rem;
+}
+
+.floating-wpp-chip {
+  background-color: #fff;
+  color: #333;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .floating-wpp {
+    padding: 0.9rem 1.5rem;
+  }
+
+  .floating-wpp-label {
+    font-size: 1rem;
+  }
+
+  .floating-wpp-chip {
+    padding: 6px 14px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .floating-wpp {
+    display: none !important;
+  }
+}
+
+/* === Menú estilo app actual === */
+.menu-category-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.menu-category-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  font-size: 0.9rem;
+  transition: background-color 0.15s ease, transform 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.menu-category-pill:active {
+  transform: scale(0.98);
+}
+
+.menu-category-pill-active {
+  background-color: #ffeded;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.menu-cat-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  background-color: #fff;
+}
+
+.menu-product-card {
+  border: none;
+  border-radius: 12px;
+}
+
+@media (min-width: 768px) {
+  .menu-product-card {
+    border-radius: 10px;
+  }
+}
+
+.menu-category-collapse {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.25s ease;
+}
+
+.menu-category-collapse.show {
+  max-height: 1000px;
+  opacity: 1;
+}
+
+/* Hover extra */
+.menu-category-pill {
+  width: 100%;
+  border: none;
+  background: #ffffff;
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.menu-category-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.menu-cat-icon {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* iOS Fix */
+.menu-category-pill span {
+  color: #000 !important;
+}
+
+.menu-category-pill .fw-semibold {
+  color: #000 !important;
+}
+
+.menu-category-pill small {
+  color: #444 !important;
+}
+
+.menu-cat-icon {
+  color: #000 !important;
+  border-color: #ccc !important;
+}
+
+.menu-category-pill-active {
+  background-color: #ffe9e9 !important;
+}
+
+/* ============================================================
+   🔥 ESTILOS PREMIUM (Opción C — tipo Rappi / PedidosYa)
+   Estas reglas se agregan al final para sobrescribir lo anterior
+   ============================================================ */
+
+.menu-category-strip {
+  gap: 0.75rem;
+}
+
+/* Pastilla premium */
+.menu-category-pill {
+  position: relative;
+  border-radius: 999px;
+  padding: 0.85rem 1.1rem;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.menu-category-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+}
+
+.menu-category-pill:active {
+  transform: scale(0.98);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+}
+
+/* Activa con gradiente */
+.menu-category-pill-active {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b) !important;
+  box-shadow: 0 12px 32px rgba(248, 113, 113, 0.5) !important;
+  border-color: transparent !important;
+}
+
+/* Texto blanco cuando está activa */
+.menu-category-pill-active .fw-semibold,
+.menu-category-pill-active small {
+  color: #ffffff !important;
+}
+
+/* Icono premium */
+.menu-cat-icon {
+  width: 28px;
+  height: 28px;
+  background: #fff;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+.menu-category-pill-active .menu-cat-icon {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.7) !important;
+  color: #fff !important;
+}
+
+
+
+/* Scroll interno para la lista del Upsell */
+.upsell-scroll-area {
+  max-height: 300px;       /* altura fija cómoda en mobile */
+  overflow-y: auto;        /* habilita scroll */
+  padding-right: 4px;      /* espacio para evitar que tape el scroll */
+}
+
+.upsell-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.upsell-scroll-area::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.upsell-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
