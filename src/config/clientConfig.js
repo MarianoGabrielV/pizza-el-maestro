@@ -1,11 +1,11 @@
 // src/config/clientConfig.js
 export const clientConfig = {
-  nombre: "Pizzería Don Pepe",          // Nombre del local
+  nombre: "Pizzería El Maestro",          // Nombre del local
   tipo: "pizzeria",                     // pizzeria | hamburgueseria | heladeria | etc.
 
   whatsapp: "+5491162123307",           // Teléfono del negocio (formato internacional)
 
-  logo: "/images/logopizza.png",    // Ruta dentro de /public (ej: public/images/logo-pizzeria.png)
+  logo: "/images/elmaestro.png",    // Ruta dentro de /public (ej: public/images/logo-pizzeria.png)
 
   colores: {
     primario: "#e63946",
