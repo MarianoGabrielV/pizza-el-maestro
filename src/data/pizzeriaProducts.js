@@ -253,73 +253,86 @@ export const empanadas = [
 //Milanesas
 export const milanesas = [
   {
-    id: "mila1",
+    id: "mila",
     name: "Milanesa con Papas",
     description: "Clásica milanesa de carne con papas fritas.",
     price: 8500,
+    img: "/images/mila/milaconpapas.png",
   },
   {
-    id: "mila2",
+    id: "mila-napo",
     name: "Milanesa Napolitana",
     description: "Milanesa napolitana con papas fritas.",
     price: 9500,
+    img: "/images/mila/napoconfritas.jpg",
   },
   {
     id: "papas1-con-chedar-panceta-grande",
     name: "Papas con Chedar y Panceta Grande",
     description: "Porción de papas fritas tradicionales con Chedar y Panceta.",
     price: 14000,
+    img: "/images/mila/chedarypanceta.png",
   },{
     id: "papas1-con-chedar-panceta-medianas",
     name: "Papas con Chedar y Panceta Medianas",
     description: "Porción de papas fritas tradicionales con Chedar y Panceta.",
     price: 11000,
+    img: "/images/mila/chedarypanceta.png",
   },{
     id: "papas1-con-chedar-panceta-medianas",
     name: "Papas con Chedar y Panceta Chicas",
     description: "Porción de papas fritas tradicionales con Chedar y Panceta.",
     price: 8500,
+    img: "/images/mila/chedarypanceta.png",
   },
 {
     id: "papas1-grandes",
     name: "Papas fritas Grandes",
     description: "Porción de papas fritas tradicionales Grandes.",
     price: 11000,
+    img: "/images/mila/papas.jpg",
   },{
     id: "papas1-medianas",
     name: "Papas fritas Medianas",
     description: "Porción de papas fritas tradicionales Medianas.",
     price: 8500,
+    img: "/images/mila/papas.jpg",
   },{
     id: "papas1-chicas",
     name: "Papas fritas Chicas",
     description: "Porción de papas fritas tradicionales Chicas.",
     price: 6000,
+    img: "/images/mila/papas.jpg",
   },{
     id: "sand-mila",
     name: "Sanwich de Milanesa",
     description: "Milanesa de carne, Lechuga y Tomate",
     price: 13000,
+    img: "/images/mila/sanwichlt.jpg",
   },{
     id: "sand-mila-jyq",
     name: "Sanwich de Milanesa",
     description: "Milanesa de carne, Jamon y Queso",
     price: 13000,
+    img: "/images/mila/",
   },{
     id: "sand-mila-completo",
     name: "Sanwich de Milanesa Completo",
     description: "???????.",
     price: 15000,
+    img: "/images/mila/",
   },{
     id: "mila-plato",
     name: "Milanesas con Papas Fritas",
     description: "Milanesas al plato con Papas Fritas",
-    price: 12000
+    price: 12000,
+    img: "/images/mila/milaalplato.png",
   },{
     id: "mila-plato-napo",
     name: "Milanesa a la Napolitana al plato ?????",
     description: "???????.",
     price: 14000,
+    img: "/images/mila/napoalplato.jpg",
   },
 ];
 
@@ -340,6 +353,60 @@ export const postres = [
     description: "Varios sabores a elección.",
     price: 4500,
     img: "/images/postres/helado.png",
+  },
+];
+
+
+//PROMOS
+export const promos = [
+  {
+    id: "promo-2",
+    name: "2 Muzzas",
+    description: "Pizza muzza grande x2.",
+    price: 22500,
+    img: "/img/promos/promo1.jpg", // o la ruta que uses
+  },
+  {
+    id: "promo-3",
+    name: "3 Muzzas",
+    description: "Pizza muzza grande x3.",
+    price: 32000,
+    img: "/img/promos/promo2.jpg",
+  },
+   {
+    id: "promo-1-1",
+    name: "1 Muzza y 1 Napolitana",
+    description: "1 Muzza y 1 Napolitana.",
+    price: 25000,
+    img: "/img/promos/promo2.jpg",
+  },
+   {
+    id: "promo-1-jm",
+    name: "1 Muzza y 1 J&M",
+    description: "1 Muzza y 1 Jamon y Morron.",
+    price: 25000,
+    img: "/img/promos/promo2.jpg",
+  },
+   {
+    id: "promo-jm-napo",
+    name: "1 J&M y 1 Napolitana",
+    description: "Una Pizza J&M y Napolitana.",
+    price: 28000,
+    img: "/img/promos/promo2.jpg",
+  },
+   {
+    id: "promo-1-emp",
+    name: "1 Muzza y 6 Empanadas",
+    description: "1 Muzza y 6 Empanadas??????.",
+    price: 23000,
+    img: "/img/promos/promo2.jpg",
+  },
+  {
+    id: "promo-2-esp",
+    name: "2 Muzza y 1 Especial",
+    description: "1 Muzza y 1 Especial (napo, calabresa, J&M).",
+    price: 35000,
+    img: "/img/promos/promo2.jpg",
   },
 ];
 

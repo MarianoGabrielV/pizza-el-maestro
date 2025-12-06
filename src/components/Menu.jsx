@@ -1,13 +1,22 @@
 // src/components/Menu.jsx
 import { useState, useRef } from "react";
-import { pizzas, empanadas, postres, milanesas } from "../data/pizzeriaProducts";
+import {
+  pizzas,
+  empanadas,
+  postres,
+  milanesas,
+  promos, // 👈 IMPORTANTE: importamos promos
+} from "../data/pizzeriaProducts";
 
 export default function Menu({ onAddToCart, isClosed }) {
   const categories = [
     { id: "pizzas", label: "Pizzas 🍕", products: pizzas },
     { id: "empanadas", label: "Empanadas 🥟", products: empanadas },
     { id: "milanesas", label: "Milanesas 🥩🍟", products: milanesas },
-    { id: "postraes", label: "Postres 🍦", products: postres },
+    // 👇 corregido: id bien escrito y sigue usando products
+    { id: "postres", label: "Postres 🍦", products: postres },
+    // 👇 ahora promos usa products y la constante existe
+    { id: "promos", label: "Promos 💸💸", products: promos },
   ];
 
   // categoría abierta en MOBILE
