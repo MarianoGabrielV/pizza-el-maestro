@@ -17,7 +17,7 @@ function App() {
   const [customer, setCustomer] = useState({
     name: "",
     address: "",
-    address2:"",
+    address2: "",
     phone: "",
     deliveryMethod: "Delivery",
     paymentMethod: "Efectivo",
@@ -37,12 +37,20 @@ function App() {
 
     const checkClosed = () => {
       const now = new Date();
-      const [openH, openM] = clientConfig.horario.apertura
-        .split(":")
-        .map(Number);
-      const [closeH, closeM] = clientConfig.horario.cierre
-        .split(":")
-        .map(Number);
+      // 0 = Domingo, 1 = Lunes, etc.
+      const days = ["domingo", "lunes", "martes", "miercoles", "jueves", "viernes", "sabado"];
+      const dayName = days[now.getDay()];
+
+      const configDia = clientConfig.horario.dias[dayName];
+
+      // Si no existe config para el día o está marcado "abierto: false", está cerrado
+      if (!configDia || !configDia.abierto) {
+        setIsClosed(true);
+        return;
+      }
+
+      const [openH, openM] = configDia.apertura.split(":").map(Number);
+      const [closeH, closeM] = configDia.cierre.split(":").map(Number);
 
       const minutesNow = now.getHours() * 60 + now.getMinutes();
       const minutesOpen = openH * 60 + openM;
@@ -51,11 +59,10 @@ function App() {
       let closedNow;
 
       if (minutesClose > minutesOpen) {
-        closedNow =
-          minutesNow < minutesOpen || minutesNow >= minutesClose;
+        closedNow = minutesNow < minutesOpen || minutesNow >= minutesClose;
       } else {
-        closedNow =
-          minutesNow < minutesOpen && minutesNow >= minutesClose;
+        // Cierra al día siguiente (ej: abre 19:00, cierra 00:00 o 01:00)
+        closedNow = minutesNow < minutesOpen && minutesNow >= minutesClose;
       }
 
       setIsClosed(closedNow);
@@ -72,7 +79,7 @@ function App() {
     if (isClosed && clientConfig.horario?.enabled) {
       alert(
         clientConfig.horario.mensajeCerrado ||
-          "En este momento el local está cerrado."
+        "En este momento el local está cerrado."
       );
       return;
     }
@@ -96,14 +103,14 @@ function App() {
       "Combos",
     ];
 
-      const shouldOpenUpsell =
-    !fromUpsell &&
-    (mainCategories.includes(product.category) || product.upsell === true);
+    const shouldOpenUpsell =
+      !fromUpsell &&
+      (mainCategories.includes(product.category) || product.upsell === true);
 
-  if (shouldOpenUpsell) {
-    setLastProduct(product);
-    setShowUpsell(true);
-  }
+    if (shouldOpenUpsell) {
+      setLastProduct(product);
+      setShowUpsell(true);
+    }
 
   };
 

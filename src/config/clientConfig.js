@@ -16,12 +16,19 @@ export const clientConfig = {
   hero: {
     fondo: "/images/fondopizza.png",   // Imagen de fondo (ponela en /public/images/)
   },
-  // 🔔 NUEVO: configuración de horario
-  //horario: {
-    //enabled: true, // si lo ponés en false, se desactiva el modo cerrado
-   // apertura: "14:00", // hora de apertura (24 hs)
-    //cierre: "23:30",   // hora de cierre  (24 hs)
-    //mensajeCerrado:
-      //"Ahora estamos cerrados. Nuestro horario: de 19:00 a 23:30 hs.",
-  //},
+
+  // // 🔔 NUEVO: configuración de horario por día
+  // horario: {
+  //   enabled: true, // Master switch: si false, ignora horarios
+  //   mensajeCerrado: "Ahora estamos cerrados. Consultá nuestros horarios.",
+  //   dias: {
+  //     lunes: { abierto: false, apertura: "19:00", cierre: "23:30" },
+  //     martes: { abierto: true, apertura: "19:00", cierre: "23:30" },
+  //     miercoles: { abierto: true, apertura: "19:00", cierre: "23:30" },
+  //     jueves: { abierto: true, apertura: "19:00", cierre: "23:30" },
+  //     viernes: { abierto: true, apertura: "19:00", cierre: "00:00" }, // hasta medianoche
+  //     sabado: { abierto: true, apertura: "19:00", cierre: "00:00" },
+  //     domingo: { abierto: true, apertura: "19:00", cierre: "23:30" },
+  //   },
+  // },
 };

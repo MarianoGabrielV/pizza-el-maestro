@@ -99,7 +99,7 @@ export default function CheckoutForm({ customer, onChange }) {
             className="form-control"
             name="comments"
             rows="3"
-            placeholder="Ej: cortar en 8, traer cambio, etc..."
+            placeholder="Ej: abono justo, traer cambio, etc..."
             value={customer.comments}
             onChange={handleChange}
           ></textarea>
