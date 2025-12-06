@@ -14,7 +14,7 @@ export const pizzas = [
     category: "Pizzas",
     description: "Salsa de tomate, muzza, jamon.",
     price: 13500,
-    img: "/images/pizzas/pizza-muzarella.png",
+    img: "/images/pizzas/Pizza-Jamon.png",
   },
    {
     id: "pizza-verdura",
@@ -22,7 +22,7 @@ export const pizzas = [
     category: "Pizzas",
     description: "Salsa de tomate, muzza, verduras.",
     price: 13000,
-    img: "/images/pizzas/pizza-muzarella.png",
+    img: "/images/pizzas/verduras.avif",
   },
   {
     id: "pizza-napolitana",
@@ -46,7 +46,7 @@ export const pizzas = [
     category: "Pizzas",
     description: "Salsa de tomate, muzza, jamon y morron.",
     price: 15000,
-    img: "/images/pizzas/pizza-muzarella.png",
+    img: "/images/pizzas/morron-jamon.png",
   },
    {
     id: "pizza-napo-jamon",
@@ -54,7 +54,7 @@ export const pizzas = [
     category: "Pizzas",
     description: "Salsa de tomate, muzza, napolitana con jamon.",
     price: 18500,
-    img: "/images/pizzas/pizza-muzarella.png",
+    img: "/images/pizzas/napoconjamon.jpg",
   },
    {
     id: "pizza-roquefort",
@@ -62,7 +62,7 @@ export const pizzas = [
     category: "Pizzas",
     description: "Salsa de tomate, muzza, roquefort.",
     price: 17000,
-    img: "/images/pizzas/pizza-muzarella.png",
+    img: "/images/pizzas/roquefort.jpg",
   },
    {
     id: "pizza-roquefort-jamon",
@@ -70,7 +70,7 @@ export const pizzas = [
     category: "Pizzas",
     description: "Salsa de tomate, muzza, roquefort y jamon.",
     price: 18500,
-    img: "/images/pizzas/pizza-muzarella.png",
+    img: "/images/pizzas/ryj.png",
   },
    {
     id: "pizza-primavera",
@@ -78,7 +78,7 @@ export const pizzas = [
     category: "Pizzas",
     description: "Salsa de tomate, muzza ??????.",
     price: 17500,
-    img: "/images/pizzas/pizza-muzarella.png",
+    img: "/images/pizzas/primavera.png",
   },
    {
     id: "pizza-cheddar",
@@ -86,7 +86,7 @@ export const pizzas = [
     category: "Pizzas",
     description: "Salsa de tomate, muzza, Cheddar.",
     price: 16000,
-    img: "/images/pizzas/pizza-muzarella.png",
+    img: "/images/pizzas/chedar.jpg",
   },
    {
     id: "pizza-muzarella-caballo",
@@ -94,7 +94,7 @@ export const pizzas = [
     category: "Pizzas",
     description: "Salsa de tomate, muzza, a caballo.",
     price: 18000,
-    img: "/images/pizzas/pizza-muzarella.png",
+    img: "/images/pizzas/acaballo.jpg",
   },
    {
     id: "pizza-muzarella-fritas",
@@ -102,7 +102,7 @@ export const pizzas = [
     category: "Pizzas",
     description: "Salsa de tomate, muzza, papas fritas.",
     price: 17000,
-    img: "/images/pizzas/pizza-muzarella.png",
+    img: "/images/pizzas/papaspng.png",
   },
    {
     id: "pizza-fugarella",
@@ -110,7 +110,7 @@ export const pizzas = [
     category: "Pizzas",
     description: "Salsa de tomate, muzza, a?????.",
     price: 13000,
-    img: "/images/pizzas/pizza-muzarella.png",
+    img: "/images/pizzas/???.png",
   },
   {
     id: "pizza-fugazzeta",
@@ -126,7 +126,7 @@ export const pizzas = [
     category: "Pizzas",
     description: "Salsa de tomate, muzza, fugazzeta y jamon.",
     price: 18000,
-    img: "/images/pizzas/pizza-muzarella.png",
+    img: "/images/pizzas/fyj.jpg",
   },
    {
     id: "pizza-muzarella-huevo",
@@ -134,7 +134,7 @@ export const pizzas = [
     category: "Pizzas",
     description: "Salsa de tomate, muzza, huevo picado.",
     price: 13000,
-    img: "/images/pizzas/pizza-muzarella.png",
+    img: "/images/pizzas/huevopicado.jpg",
   },
    {
     id: "pizza-calzones-napolitano",
@@ -142,7 +142,7 @@ export const pizzas = [
     category: "Pizzas",
     description: "Salsa de tomate, muzza, ????.",
     price: 15000,
-    img: "/images/pizzas/pizza-muzarella.png",
+    img: "/images/pizzas/calzones.png",
   },
    {
     id: "pizza-calzones-calambres",
@@ -150,7 +150,7 @@ export const pizzas = [
     category: "Pizzas",
     description: "Salsa de tomate, muzza, ??????.",
     price: 15000,
-    img: "/images/pizzas/pizza-muzarella.png",
+    img: "/images/pizzas/calzonescal.jpg",
   },
   
   // agregás más pizzas...
@@ -182,7 +182,7 @@ export const empanadas = [
     category: "Empanadas",
     description: "Carne picada condimentada.",
     price: 1900,
-    img: "/images/empanadas/empanada-jyq.png",
+    img: "/images/empanadas/empanadacarne.png",
   },
   {
     id: "emp-jyq",
@@ -214,7 +214,7 @@ export const empanadas = [
     category: "Empanadas",
     description: "Atun condimentos.",
     price: 1900,
-    img: "/images/empanadas/atun.png",
+    img: "/images/empanadas/cqyp.jpg",
   },
   {
     id: "emp-Verdura",
@@ -222,7 +222,7 @@ export const empanadas = [
     category: "Empanadas",
     description: "???????????.",
     price: 1900,
-    img: "/images/empanadas/atun.png",
+    img: "/images/empanadas/verdura.jpg",
   },
   {
     id: "emp-calabresa",
@@ -230,7 +230,7 @@ export const empanadas = [
     category: "Empanadas",
     description: "Calabresa.",
     price: 1900,
-    img: "/images/empanadas/atun.png",
+    img: "/images/empanadas/calabre.jpg",
   },
   {
     id: "emp-roquefort",
@@ -238,7 +238,7 @@ export const empanadas = [
     category: "Empanadas",
     description: "Roquefort",
     price: 1900,
-    img: "/images/empanadas/atun.png",
+    img: "/images/empanadas/roqu.jpg",
   },
   {
     id: "emp-tomate-muza",
@@ -246,7 +246,7 @@ export const empanadas = [
     category: "Empanadas",
     description: "Tomate, Muzza y Huevo",
     price: 1900,
-    img: "/images/empanadas/atun.png",
+    img: "/images/empanadas/tomate.png",
   },
 ];
 
@@ -265,10 +265,61 @@ export const milanesas = [
     price: 9500,
   },
   {
-    id: "papas1",
-    name: "Papas Fritas",
-    description: "Porción de papas fritas tradicionales.",
-    price: 4000,
+    id: "papas1-con-chedar-panceta-grande",
+    name: "Papas con Chedar y Panceta Grande",
+    description: "Porción de papas fritas tradicionales con Chedar y Panceta.",
+    price: 14000,
+  },{
+    id: "papas1-con-chedar-panceta-medianas",
+    name: "Papas con Chedar y Panceta Medianas",
+    description: "Porción de papas fritas tradicionales con Chedar y Panceta.",
+    price: 11000,
+  },{
+    id: "papas1-con-chedar-panceta-medianas",
+    name: "Papas con Chedar y Panceta Chicas",
+    description: "Porción de papas fritas tradicionales con Chedar y Panceta.",
+    price: 8500,
+  },
+{
+    id: "papas1-grandes",
+    name: "Papas fritas Grandes",
+    description: "Porción de papas fritas tradicionales Grandes.",
+    price: 11000,
+  },{
+    id: "papas1-medianas",
+    name: "Papas fritas Medianas",
+    description: "Porción de papas fritas tradicionales Medianas.",
+    price: 8500,
+  },{
+    id: "papas1-chicas",
+    name: "Papas fritas Chicas",
+    description: "Porción de papas fritas tradicionales Chicas.",
+    price: 6000,
+  },{
+    id: "sand-mila",
+    name: "Sanwich de Milanesa",
+    description: "Milanesa de carne, Lechuga y Tomate",
+    price: 13000,
+  },{
+    id: "sand-mila-jyq",
+    name: "Sanwich de Milanesa",
+    description: "Milanesa de carne, Jamon y Queso",
+    price: 13000,
+  },{
+    id: "sand-mila-completo",
+    name: "Sanwich de Milanesa Completo",
+    description: "???????.",
+    price: 15000,
+  },{
+    id: "mila-plato",
+    name: "Milanesas con Papas Fritas",
+    description: "Milanesas al plato con Papas Fritas",
+    price: 12000
+  },{
+    id: "mila-plato-napo",
+    name: "Milanesa a la Napolitana al plato ?????",
+    description: "???????.",
+    price: 14000,
   },
 ];
 

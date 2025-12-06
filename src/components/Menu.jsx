@@ -6,7 +6,7 @@ export default function Menu({ onAddToCart, isClosed }) {
   const categories = [
     { id: "pizzas", label: "Pizzas 🍕", products: pizzas },
     { id: "empanadas", label: "Empanadas 🥟", products: empanadas },
-    { id: "milanesas", label: "Milanesas", products: milanesas },
+    { id: "milanesas", label: "Milanesas 🥩🍟", products: milanesas },
     { id: "postraes", label: "Postres 🍦", products: postres },
   ];
 
