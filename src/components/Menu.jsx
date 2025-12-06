@@ -13,10 +13,8 @@ export default function Menu({ onAddToCart, isClosed }) {
     { id: "pizzas", label: "Pizzas 🍕", products: pizzas },
     { id: "empanadas", label: "Empanadas 🥟", products: empanadas },
     { id: "milanesas", label: "Milanesas 🥩🍟", products: milanesas },
-    // 👇 corregido: id bien escrito y sigue usando products
-    { id: "postres", label: "Postres 🍦", products: postres },
-    // 👇 ahora promos usa products y la constante existe
     { id: "promos", label: "Promos 💸💸", products: promos },
+    { id: "postres", label: "Postres 🍦", products: postres },
   ];
 
   // categoría abierta en MOBILE
@@ -106,9 +104,8 @@ export default function Menu({ onAddToCart, isClosed }) {
                 key={cat.id}
                 type="button"
                 onClick={() => handleToggleCategory(cat.id)}
-                className={`menu-category-pill ${
-                  isActive ? "menu-category-pill-active" : ""
-                }`}
+                className={`menu-category-pill ${isActive ? "menu-category-pill-active" : ""
+                  }`}
               >
                 <span className="flex-grow-1 text-start">
                   <span className="d-block fw-semibold">{cat.label}</span>
@@ -146,9 +143,8 @@ export default function Menu({ onAddToCart, isClosed }) {
 
               {/* MOBILE: contenedor con animación de apertura/cierre */}
               <div
-                className={`d-md-none menu-category-collapse ${
-                  isOpenMobile ? "show" : ""
-                }`}
+                className={`d-md-none menu-category-collapse ${isOpenMobile ? "show" : ""
+                  }`}
               >
                 {cat.products.map((item) => renderProductCard(item))}
               </div>
