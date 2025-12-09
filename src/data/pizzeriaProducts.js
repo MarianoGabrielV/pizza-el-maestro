@@ -7,6 +7,30 @@ export const pizzas = [
     description: "Salsa de tomate, muzza, aceitunas y orégano.",
     price: 12000,
     img: "/images/pizzas/pizza-muzarella.png",
+  },{
+  id: "pizza-faina", 
+  name: "Faina Completa",
+  category: "Pizzas",
+  description: "Faina Completa.",
+  price: 9000,
+  img: "/images/pizzas/faina.jpg",
+  noExtras: true,          // 👈 NO mostrar extras
+},
+{
+  id: "pizza-faina-por",
+  name: "Faina por Porciones",
+  category: "Pizzas",
+  description: "Faina por porciones.",
+  price: 1200,
+  img: "/images/pizzas/fainapor.jpg",
+  noExtras: true,          // 👈 NO mostrar extras
+},{
+    id: "pizza-mitad",
+    name: "Mitad y Mitad",
+    category: "Pizzas",
+    description: "Selceccione las pizzas mitad y mitad que tenemos para ofrecer.",
+    price: 0,
+    img: "/images/pizzas/mitad.png",
   },
    {
     id: "pizza-jamon",
@@ -140,15 +164,23 @@ export const pizzas = [
     id: "pizza-calzones-napolitano",
     name: "Calzones Napolitano",
     category: "Pizzas",
-    description: "Salsa de tomate, muzza, ????.",
+    description: "Jamon, Muzza y Tomate.",
     price: 15000,
     img: "/images/pizzas/calzones.png",
   },
    {
-    id: "pizza-calzones-calambres",
-    name: "Calzones Calambres",
+    id: "pizza-calzones-calabresa",
+    name: "Calzones Calabresa",
     category: "Pizzas",
-    description: "Salsa de tomate, muzza, ??????.",
+    description: "Muzza, Longaniza y Tomate.",
+    price: 15000,
+    img: "/images/pizzas/calzonescal.jpg",
+  },
+  {
+    id: "pizza-calzones-roque",
+    name: "Calzones Roquefort",
+    category: "Pizzas",
+    description: "Jamon, Roquefort y Morrones.",
     price: 15000,
     img: "/images/pizzas/calzonescal.jpg",
   },
@@ -253,18 +285,23 @@ export const empanadas = [
 //Milanesas
 export const milanesas = [
   {
-    id: "mila",
-    name: "Milanesa con Papas",
-    description: "Clásica milanesa de carne con papas fritas.",
-    price: 8500,
-    img: "/images/mila/milaconpapas.png",
-  },
-  {
-    id: "mila-napo",
-    name: "Milanesa Napolitana",
-    description: "Milanesa napolitana con papas fritas.",
-    price: 9500,
-    img: "/images/mila/napoconfritas.jpg",
+    id: "mila-sand",
+    name: "Sandwich de Milanesa",
+    description: "Clásica milanesa de carne en Sandwich.",
+    price: 9000,
+    img: "/images/mila/",
+  },{
+    id: "mila-plato",
+    name: "Milanesas con Papas Fritas",
+    description: "Milanesas al plato con Papas Fritas",
+    price: 12000,
+    img: "/images/mila/milaalplato.png",
+  },{
+    id: "mila-plato-napo",
+    name: "Milanesa a la Napolitana al plato con Papas Fritas",
+    description: "Milanesa a la Napolitana al plato con Papas Fritas.",
+    price: 14000,
+    img: "/images/mila/napoalplato.jpg",
   },
   {
     id: "papas1-con-chedar-panceta-grande",
@@ -318,21 +355,9 @@ export const milanesas = [
   },{
     id: "sand-mila-completo",
     name: "Sanwich de Milanesa Completo",
-    description: "???????.",
+    description: "Milanesa de carne, Lechuga, Tomate, Jamon y Queso con Papas Fritas.",
     price: 15000,
-    img: "/images/mila/",
-  },{
-    id: "mila-plato",
-    name: "Milanesas con Papas Fritas",
-    description: "Milanesas al plato con Papas Fritas",
-    price: 12000,
-    img: "/images/mila/milaalplato.png",
-  },{
-    id: "mila-plato-napo",
-    name: "Milanesa a la Napolitana al plato ?????",
-    description: "???????.",
-    price: 14000,
-    img: "/images/mila/napoalplato.jpg",
+    img: "/images/mila/milacomp.jpg",
   },
 ];
 
@@ -426,33 +451,15 @@ export const extrasPizza = [
     category: "Extras",
   },
   {
-    id: "extra-queso",
-    name: "Extra queso 🧀",
-    price: 800,
+    id: "extra-anchoas-cmp",
+    name: "Extra Anchoas Completa 🍤",
+    price: 2000,
     category: "Extras",
   },
   {
-    id: "extra-jamon",
-    name: "Extra Jamón 🐖",
-    price: 1200,
-    category: "Extras",
-  },
-  {
-    id: "extra-salsa",
-    name: "Extra salsa 🍅",
-    price: 600,
-    category: "Extras",
-  },
-  {
-    id: "albahaca-fresca",
-    name: "Extra Albahaca fresca 🌿",
-    price: 500,
-    category: "Extras",
-  },
-  {
-    id: "anchoas",
-    name: "Extra Anchoas 🍤 ",
-    price: 1500,
+    id: "extra-anchoas-mit",
+    name: "Extra Anchoas Mitad 🍤",
+    price: 1000,
     category: "Extras",
   },
   {
@@ -460,11 +467,49 @@ export const extrasPizza = [
     name: "Extra Huevo 🍳",
     price: 1500,
     category: "Extras",
+  }
+];
+
+// 🔥 NUEVO: extras especiales para la pizza "Mitad y Mitad"
+export const extrasMitad = [
+  // Mantiene molde / piedra
+  {
+    id: "al-molde-mitad",
+    name: "Al Molde 🍕🟫",
+    price: 0,
+    category: "Extras Mitad",
   },
   {
-    id: "cebolla",
-    name: "Extra Cebolla 🧅",
-    price: 1500,
-    category: "Extras",
+    id: "ala-piedra-mitad",
+    name: "A la Piedra 🔥🍕",
+    price: 0,
+    category: "Extras Mitad",
   },
+
+  // Combos de mitad y mitad (podés agregar todos los que quieras)
+  {
+    id: "mitad-muzza-jm",
+    name: "1/2 Muzza + 1/2 Jamón y Morrón",
+    price: 15000,
+    category: "Mitad y Mitad",
+  },
+  {
+    id: "mitad-muzza-napo",
+    name: "1/2 Muzza + 1/2 Napolitana",
+    price: 15000,
+    category: "Mitad y Mitad",
+  },
+  {
+    id: "mitad-napo-jm",
+    name: "1/2 Napolitana + 1/2 Jamón y Morrón",
+    price: 15000,
+    category: "Mitad y Mitad",
+  },
+  {
+    id: "mitad-calabresa-muzza",
+    name: "1/2 Calabresa + 1/2 Muzza",
+    price: 15000,
+    category: "Mitad y Mitad",
+  },
+  // …seguí agregando las combinaciones que quieras
 ];

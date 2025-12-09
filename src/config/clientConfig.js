@@ -18,17 +18,17 @@ export const clientConfig = {
   },
 
   // // 🔔 NUEVO: configuración de horario por día
-  // horario: {
-  //   enabled: true, // Master switch: si false, ignora horarios
-  //   mensajeCerrado: "Ahora estamos cerrados. Consultá nuestros horarios.",
-  //   dias: {
-  //     lunes: { abierto: false, apertura: "19:00", cierre: "23:30" },
-  //     martes: { abierto: true, apertura: "19:00", cierre: "23:30" },
-  //     miercoles: { abierto: true, apertura: "19:00", cierre: "23:30" },
-  //     jueves: { abierto: true, apertura: "19:00", cierre: "23:30" },
-  //     viernes: { abierto: true, apertura: "19:00", cierre: "00:00" }, // hasta medianoche
-  //     sabado: { abierto: true, apertura: "19:00", cierre: "00:00" },
-  //     domingo: { abierto: true, apertura: "19:00", cierre: "23:30" },
-  //   },
-  // },
+   horario: {
+     enabled: true, // Master switch: si false, ignora horarios
+    mensajeCerrado: "Ahora estamos cerrados. Consultá nuestros horarios.",
+     dias: {
+       lunes: { abierto: false, apertura: "19:00", cierre: "23:30" },
+       martes: { abierto: false, apertura: "19:00", cierre: "23:30" },
+       miercoles: { abierto: false, apertura: "19:00", cierre: "23:30" },
+       jueves: { abierto: false, apertura: "19:00", cierre: "23:30" },
+       viernes: { abierto: true, apertura: "20:30", cierre: "22:30" }, // hasta medianoche
+       sabado: { abierto: true, apertura: "20:30", cierre: "22:30" },
+       domingo: { abierto: true, apertura: "20:30", cierre: "22:30" },
+     },
+   },
 };

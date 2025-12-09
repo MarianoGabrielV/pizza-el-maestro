@@ -7,8 +7,8 @@ import Cart from "./components/Cart";
 import CheckoutForm from "./components/CheckoutForm";
 import WhatsAppButton from "./components/WhatsAppButton";
 import UpsellModal from "./components/UpsellModal";
-// 👉 Usamos solo extrasPizza para el upsell
-import { extrasPizza } from "./data/pizzeriaProducts";
+// 👉 Usamos extrasPizza y extrasMitad para el upsell
+import { extrasPizza, extrasMitad } from "./data/pizzeriaProducts";
 
 import { clientConfig } from "./config/clientConfig";
 
@@ -27,9 +27,7 @@ function App() {
   const [showUpsell, setShowUpsell] = useState(false);
   const [isClosed, setIsClosed] = useState(false);
   const [lastProduct, setLastProduct] = useState(null);
-
-  // ⬇️ Ahora las sugerencias del modal son los extras de pizza
-  const upsellItems = extrasPizza;
+  const [upsellItems, setUpsellItems] = useState(extrasPizza); // 👈 ahora es estado
 
   // 🔔 Horario
   useEffect(() => {
@@ -37,13 +35,19 @@ function App() {
 
     const checkClosed = () => {
       const now = new Date();
-      // 0 = Domingo, 1 = Lunes, etc.
-      const days = ["domingo", "lunes", "martes", "miercoles", "jueves", "viernes", "sabado"];
+      const days = [
+        "domingo",
+        "lunes",
+        "martes",
+        "miercoles",
+        "jueves",
+        "viernes",
+        "sabado",
+      ];
       const dayName = days[now.getDay()];
 
       const configDia = clientConfig.horario.dias[dayName];
 
-      // Si no existe config para el día o está marcado "abierto: false", está cerrado
       if (!configDia || !configDia.abierto) {
         setIsClosed(true);
         return;
@@ -61,7 +65,6 @@ function App() {
       if (minutesClose > minutesOpen) {
         closedNow = minutesNow < minutesOpen || minutesNow >= minutesClose;
       } else {
-        // Cierra al día siguiente (ej: abre 19:00, cierra 00:00 o 01:00)
         closedNow = minutesNow < minutesOpen && minutesNow >= minutesClose;
       }
 
@@ -79,11 +82,12 @@ function App() {
     if (isClosed && clientConfig.horario?.enabled) {
       alert(
         clientConfig.horario.mensajeCerrado ||
-        "En este momento el local está cerrado."
+          "En este momento el local está cerrado."
       );
       return;
     }
 
+    // Agregar al carrito
     setCart((prev) => {
       const existing = prev.find((item) => item.id === product.id);
       if (existing) {
@@ -94,6 +98,7 @@ function App() {
       return [...prev, { ...product, qty: 1 }];
     });
 
+    // Categorías que disparan el modal de extras
     const mainCategories = [
       "Pizzas",
       "Hamburguesas",
@@ -105,13 +110,21 @@ function App() {
 
     const shouldOpenUpsell =
       !fromUpsell &&
+      !product.noExtras && // 👈 respeta las pizzas sin extras
       (mainCategories.includes(product.category) || product.upsell === true);
 
     if (shouldOpenUpsell) {
       setLastProduct(product);
+
+      // 👇 Si es la pizza "Mitad y Mitad", usamos la lista especial
+      if (product.id === "pizza-mitad") {
+        setUpsellItems(extrasMitad);
+      } else {
+        setUpsellItems(extrasPizza);
+      }
+
       setShowUpsell(true);
     }
-
   };
 
   const removeFromCart = (id) => {
@@ -121,16 +134,11 @@ function App() {
   const changeQty = (id, newQty) => {
     if (newQty <= 0) return;
     setCart((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, qty: newQty } : item
-      )
+      prev.map((item) => (item.id === id ? { ...item, qty: newQty } : item))
     );
   };
 
-  const total = cart.reduce(
-    (sum, item) => sum + item.price * item.qty,
-    0
-  );
+  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
   const handleAddFromUpsell = (product) => {
     addToCart(product, { fromUpsell: true });
@@ -148,7 +156,6 @@ function App() {
 
       <HeroCarousel />
 
-      {/* margen top + algo de espacio por la barra flotante */}
       <main
         className="py-5"
         id="pedido"
@@ -169,10 +176,7 @@ function App() {
                 onRemove={removeFromCart}
                 onChangeQty={changeQty}
               />
-              <CheckoutForm
-                customer={customer}
-                onChange={setCustomer}
-              />
+              <CheckoutForm customer={customer} onChange={setCustomer} />
               <WhatsAppButton
                 cart={cart}
                 total={total}
@@ -184,7 +188,6 @@ function App() {
         </div>
       </main>
 
-      {/* Footer normal */}
       <footer className="bg-dark text-light text-center py-3 mt-auto">
         <small>
           © {new Date().getFullYear()}{" "}
@@ -200,7 +203,7 @@ function App() {
         </small>
       </footer>
 
-      {/* 🧱 Separador solo mobile para que la barra roja no tape el footer */}
+      {/* Separador solo mobile */}
       <div className="d-md-none" style={{ height: "64px" }} />
 
       {/* Modal de sugerencias */}
