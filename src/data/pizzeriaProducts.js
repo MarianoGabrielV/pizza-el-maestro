@@ -132,9 +132,9 @@ export const pizzas = [
     id: "pizza-fugarella",
     name: "Fugarella",
     category: "Pizzas",
-    description: "Salsa de tomate, muzza, a?????.",
+    description: "Cebolla, Muzzarela, Orégano y Aceitunas negras.",
     price: 13000,
-    img: "/images/pizzas/???.png",
+    img: "/images/pizzas/fuga.jpeg",
   },
   {
     id: "pizza-fugazzeta",
