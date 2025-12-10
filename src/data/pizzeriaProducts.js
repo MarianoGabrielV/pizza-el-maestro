@@ -166,7 +166,8 @@ export const pizzas = [
     category: "Pizzas",
     description: "Jamon, Muzza y Tomate.",
     price: 15000,
-    img: "/images/pizzas/calzones.png",
+    img: "/images/pizzas/calzo.jpeg",
+    noExtras: true,  
   },
    {
     id: "pizza-calzones-calabresa",
@@ -174,7 +175,8 @@ export const pizzas = [
     category: "Pizzas",
     description: "Muzza, Longaniza y Tomate.",
     price: 15000,
-    img: "/images/pizzas/calzonescal.jpg",
+    img: "/images/pizzas/calzo.jpeg",
+    noExtras: true,  
   },
   {
     id: "pizza-calzones-roque",
@@ -182,7 +184,8 @@ export const pizzas = [
     category: "Pizzas",
     description: "Jamon, Roquefort y Morrones.",
     price: 15000,
-    img: "/images/pizzas/calzonescal.jpg",
+    img: "/images/pizzas/calzo.jpeg",
+    noExtras: true,  
   },
   
   // agregás más pizzas...
@@ -252,7 +255,7 @@ export const empanadas = [
     id: "emp-Verdura",
     name: "Empanada de Verduras",
     category: "Empanadas",
-    description: "???????????.",
+    description: "Verduras.",
     price: 1900,
     img: "/images/empanadas/verdura.jpg",
   },
@@ -306,19 +309,19 @@ export const milanesas = [
   {
     id: "papas1-con-chedar-panceta-grande",
     name: "Papas con Chedar y Panceta Grande",
-    description: "Porción de papas fritas tradicionales con Chedar y Panceta.",
+    description: "Porción de papas fritas tradicionales con Chedar, Panceta y Verdeo.",
     price: 14000,
     img: "/images/mila/chedarypanceta.png",
   },{
     id: "papas1-con-chedar-panceta-medianas",
     name: "Papas con Chedar y Panceta Medianas",
-    description: "Porción de papas fritas tradicionales con Chedar y Panceta.",
+    description: "Porción de papas fritas tradicionales con Chedar, Panceta y Verdeo.",
     price: 11000,
     img: "/images/mila/chedarypanceta.png",
   },{
     id: "papas1-con-chedar-panceta-medianas",
     name: "Papas con Chedar y Panceta Chicas",
-    description: "Porción de papas fritas tradicionales con Chedar y Panceta.",
+    description: "Porción de papas fritas tradicionales con Chedar, Panceta y Verdeo.",
     price: 8500,
     img: "/images/mila/chedarypanceta.png",
   },
@@ -363,22 +366,22 @@ export const milanesas = [
 
 // POSTRES
 export const postres = [
-  {
-    id: "flan-casero",
-    name: "Flan casero",
-    category: "Postres",
-    description: "Flan casero con dulce de leche o crema.",
-    price: 2000,
-    img: "/images/postres/flan.png",
-  },
-  {
-    id: "helado-1k",
-    name: "Helado 1kg",
-    category: "Postres",
-    description: "Varios sabores a elección.",
-    price: 4500,
-    img: "/images/postres/helado.png",
-  },
+ // {
+  //  id: "flan-casero",
+   // name: "Flan casero",
+   // category: "Postres",
+    //description: "Flan casero con dulce de leche o crema.",
+    //price: 2000,
+    //img: "/images/postres/flan.png",
+  //},
+  //{
+    //id: "helado-1k",
+    //name: "Helado 1kg",
+    //category: "Postres",
+    //description: "Varios sabores a elección.",
+    //price: 4500,
+    //img: "/images/postres/helado.png",
+  //},
 ];
 
 
@@ -389,49 +392,49 @@ export const promos = [
     name: "2 Muzzas",
     description: "Pizza muzza grande x2.",
     price: 22500,
-    img: "/img/promos/promo1.jpg", // o la ruta que uses
+    img: "/images/promo.png", // o la ruta que uses
   },
   {
     id: "promo-3",
     name: "3 Muzzas",
     description: "Pizza muzza grande x3.",
     price: 32000,
-    img: "/img/promos/promo2.jpg",
+    img: "/images/promo.png",
   },
    {
     id: "promo-1-1",
     name: "1 Muzza y 1 Napolitana",
     description: "1 Muzza y 1 Napolitana.",
     price: 25000,
-    img: "/img/promos/promo2.jpg",
+    img: "/images/promo.png",
   },
    {
     id: "promo-1-jm",
     name: "1 Muzza y 1 J&M",
     description: "1 Muzza y 1 Jamon y Morron.",
     price: 25000,
-    img: "/img/promos/promo2.jpg",
+    img: "/images/promo.png",
   },
    {
     id: "promo-jm-napo",
     name: "1 J&M y 1 Napolitana",
     description: "Una Pizza J&M y Napolitana.",
     price: 28000,
-    img: "/img/promos/promo2.jpg",
+    img: "/images/promo.png",
   },
    {
     id: "promo-1-emp",
     name: "1 Muzza y 6 Empanadas",
     description: "1 Muzza y 6 Empanadas??????.",
     price: 23000,
-    img: "/img/promos/promo2.jpg",
+    img: "/images/promo.png",
   },
   {
     id: "promo-2-esp",
     name: "2 Muzza y 1 Especial",
     description: "1 Muzza y 1 Especial (napo, calabresa, J&M).",
     price: 35000,
-    img: "/img/promos/promo2.jpg",
+    img: "/images/promo.png",
   },
 ];
 
