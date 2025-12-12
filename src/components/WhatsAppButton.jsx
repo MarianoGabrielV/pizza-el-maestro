@@ -1,93 +1,92 @@
+// src/components/WhatsAppButton.jsx
 import { clientConfig } from "../config/clientConfig";
 
+function formatMoney(n) {
+  return new Intl.NumberFormat("es-AR").format(n);
+}
+
+function getWhatsAppNumber() {
+  const raw =
+    clientConfig?.whatsappNumber ||
+    clientConfig?.whatsapp?.number ||
+    clientConfig?.whatsapp?.phone ||
+    clientConfig?.whatsapp ||
+    "";
+  return String(raw).replace(/\D/g, "");
+}
+
 export default function WhatsAppButton({ cart, total, customer, isClosed }) {
-  const buildMessage = () => {
+  const cartCount = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
+
+  const getMessage = () => {
     const lines = [];
-
-    const isPackFlavor = (item) =>
-      item.id.endsWith("-pack-media") || item.id.endsWith("-pack-docena");
-
-    // Packs principales de empanadas
-    const mediaPack = cart.find((item) => item.id === "emp-media-docena");
-    const mediaFlavors = cart.filter((item) =>
-      item.id.endsWith("-pack-media")
-    );
-
-    const docenaPack = cart.find((item) => item.id === "emp-docena");
-    const docenaFlavors = cart.filter((item) =>
-      item.id.endsWith("-pack-docena")
-    );
-
-    // Extras de pizzas (categoría Extras)
-    const pizzaExtras = cart.filter((item) => item.category === "Extras");
-
-    lines.push("📦 Nuevo pedido:");
+    lines.push("🟧 Nuevo pedido:");
     lines.push("");
     lines.push("🍕 Detalle del pedido:");
 
-    // Productos normales (sin sabores de pack ni extras)
     cart.forEach((item) => {
-      // No mostramos los sabores de pack acá
-      if (isPackFlavor(item)) return;
+      const qty = item.qty || 1;
+      const extrasSum = (item.extras || []).reduce(
+        (a, e) => a + (e.price || 0),
+        0
+      );
+      const unitTotal = item.price + extrasSum;
 
-      // Tampoco mostramos los extras como producto común
-      if (item.category === "Extras") return;
+      lines.push(`- ${qty}x ${item.name} ($${formatMoney(unitTotal)} c/u)`);
 
-      lines.push(`- ${item.qty}x ${item.name} ($${item.price} c/u)`);
+      if (item.extras && item.extras.length > 0) {
+        item.extras.forEach((e) => {
+          lines.push(
+            `   ↳ ${e.name}${e.price ? ` (+$${formatMoney(e.price)})` : ""}`
+          );
+        });
+      }
+
+      if (item.pack) {
+        const title =
+          item.pack.size === 12
+            ? "   🥟 Docena (detalle):"
+            : "   🥟 Media docena (detalle):";
+        lines.push(title);
+
+        const detail = Object.entries(item.pack.items || {})
+          .filter(([, qty]) => qty > 0)
+          .map(([id, qty]) => `${qty}x ${id}`)
+          .join(", ");
+
+        lines.push(`   ${detail || "(sin selección)"}`);
+      }
     });
 
-    // 🥟 Detalle de Media docena
-    if (mediaPack && mediaFlavors.length > 0) {
-      const detail = mediaFlavors
-        .map((item) => `${item.qty}x ${item.name}`)
-        .join(", ");
-
-      lines.push("");
-      lines.push(`🥟 Detalle ${mediaPack.name}:`);
-      lines.push(detail);
-    }
-
-    // 🥟 Detalle de Docena
-    if (docenaPack && docenaFlavors.length > 0) {
-      const detail = docenaFlavors
-        .map((item) => `${item.qty}x ${item.name}`)
-        .join(", ");
-
-      lines.push("");
-      lines.push(`🥟 Detalle ${docenaPack.name}:`);
-      lines.push(detail);
-    }
-
-    // ➕ Detalle de agregados para pizzas
-    if (pizzaExtras.length > 0) {
-      lines.push("");
-      lines.push("➕ Agregados para pizzas:");
-      pizzaExtras.forEach((item) => {
-        lines.push(`- ${item.qty}x ${item.name} ($${item.price} c/u)`);
-      });
-    }
-
     lines.push("");
-    lines.push(`💰 Total: $${total}`);
+    lines.push(`💰 Total: $${formatMoney(total)}`);
     lines.push("");
     lines.push("👤 Datos del cliente:");
     lines.push(`Nombre: ${customer.name || "-"}`);
-    lines.push(`Dirección Y Numeracion: ${customer.address || "-"}`);
+    lines.push(`Dirección y numeración: ${customer.address || "-"}`);
     lines.push(`Entre calles: ${customer.address2 || "-"}`);
     lines.push(`Teléfono: ${customer.phone || "-"}`);
     lines.push(`Entrega: ${customer.deliveryMethod || "-"}`);
     lines.push(`Pago: ${customer.paymentMethod || "-"}`);
-    if (customer.comments) {
-      lines.push("");
-      lines.push("📝 Comentarios:");
-      lines.push(customer.comments);
+
+    if (customer.comments?.trim()) {
+      lines.push(`Comentarios: ${customer.comments.trim()}`);
     }
 
     return lines.join("\n");
   };
 
-  // 👉 Botón VERDE: envía el pedido por WhatsApp
-  const handleClickDesktop = () => {
+  const handleSend = () => {
+    const phone = getWhatsAppNumber();
+
+    if (!phone) {
+      alert("No encontré el número de WhatsApp en clientConfig.");
+      return;
+    }
+    if (!cart.length) {
+      alert("El carrito está vacío.");
+      return;
+    }
     if (isClosed && clientConfig.horario?.enabled) {
       alert(
         clientConfig.horario.mensajeCerrado ||
@@ -96,73 +95,45 @@ export default function WhatsAppButton({ cart, total, customer, isClosed }) {
       return;
     }
 
-    if (!cart || cart.length === 0) {
-      alert("Agregá al menos un producto al pedido 🙂");
-      return;
-    }
-    if (!customer?.name) {
-      alert("Completá tu nombre antes de enviar el pedido.");
-      return;
-    }
-
-    const phoneRaw = clientConfig.whatsapp || "+5491162123307";
-    const phone = phoneRaw.replace(/[^\d]/g, "");
-
-    const text = encodeURIComponent(buildMessage());
-    const url = `https://wa.me/${phone}?text=${text}`;
-    window.open(url, "_blank");
+    const msg = encodeURIComponent(getMessage());
+    const url = `https://wa.me/${phone}?text=${msg}`;
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
-  // 👉 Barra roja (mobile/tablet): solo hace scroll a “Mi pedido” o al menú
-  const handleClickMobile = () => {
-    if (isClosed && clientConfig.horario?.enabled) return;
-
-    if (!cart || cart.length === 0) {
-      const menu = document.getElementById("menu");
-      if (menu) {
-        menu.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-      return;
-    }
-
-    const cartSection = document.getElementById("cart");
-    if (cartSection) {
-      cartSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
-  const itemCount = cart.reduce((sum, item) => sum + item.qty, 0);
+  const canSend =
+    cart.length > 0 &&
+    customer.name?.trim() &&
+    customer.address?.trim() &&
+    customer.phone?.trim();
 
   return (
     <>
-      {/* Botón verde: visible en todas las vistas (no fijo) */}
-      <button
-        className="btn btn-success w-100 btn-lg mb-3"
-        onClick={handleClickDesktop}
-        disabled={isClosed}
-      >
-        {isClosed ? "Local cerrado" : "Enviar pedido por WhatsApp"}
-      </button>
-
-      {/* Barra fija inferior: mobile + tablet (se oculta en desktop por CSS) */}
+      {/* ✅ Botón verde (debajo del formulario) */}
       <button
         type="button"
-        onClick={handleClickMobile}
-        disabled={isClosed}
-        className="floating-wpp border-0"
+        className="btn btn-success w-100 mt-3"
+        onClick={handleSend}
+        disabled={!canSend}
+        title={
+          canSend
+            ? ""
+            : "Completá Nombre, Dirección y Teléfono para enviar el pedido"
+        }
       >
-        <span className="floating-wpp-label">
-          {itemCount === 0 ? "Ver menú" : "Ver mi pedido"}
-        </span>
-        <span className="floating-wpp-chip">
-          <span role="img" aria-label="carrito">
-            🧺
-          </span>
-          <span>
-            {itemCount} · ${total}
-          </span>
-        </span>
+        Enviar pedido por WhatsApp
       </button>
+
+      {/* 🔴 BARRA ROJA INFORMATIVA (solo mobile) */}
+      <div className="floating-wpp d-md-none">
+        <div className="floating-wpp-label">
+          🧾 {cartCount} producto{cartCount !== 1 ? "s" : ""} •{" "}
+          <span className="fw-bold">${formatMoney(total)}</span>
+        </div>
+
+        <div className="floating-wpp-chip">
+          👀 Armando pedido
+        </div>
+      </div>
     </>
   );
 }

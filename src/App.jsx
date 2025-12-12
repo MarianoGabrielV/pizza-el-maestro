@@ -1,5 +1,5 @@
 // src/App.jsx
-import { useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Navbar from "./components/Navbar";
 import HeroCarousel from "./components/HeroCarousel";
 import Menu from "./components/Menu";
@@ -7,10 +7,18 @@ import Cart from "./components/Cart";
 import CheckoutForm from "./components/CheckoutForm";
 import WhatsAppButton from "./components/WhatsAppButton";
 import UpsellModal from "./components/UpsellModal";
-// 👉 Usamos extrasPizza y extrasMitad para el upsell
-import { extrasPizza, extrasMitad } from "./data/pizzeriaProducts";
+
+import {
+  empanadas,
+  extrasPizza,
+  extrasMitad,
+} from "./data/pizzeriaProducts";
 
 import { clientConfig } from "./config/clientConfig";
+
+function uid() {
+  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -26,8 +34,21 @@ function App() {
 
   const [showUpsell, setShowUpsell] = useState(false);
   const [isClosed, setIsClosed] = useState(false);
+
+  // para saber a qué producto estamos agregando extras
+  const [activeLineId, setActiveLineId] = useState(null);
   const [lastProduct, setLastProduct] = useState(null);
-  const [upsellItems, setUpsellItems] = useState(extrasPizza); // 👈 ahora es estado
+
+  // modal modes: "extras" | "mitad" | "pack"
+  const [upsellMode, setUpsellMode] = useState("extras");
+  const [upsellItems, setUpsellItems] = useState(extrasPizza);
+
+  // packs empanadas
+  const [requiredPackCount, setRequiredPackCount] = useState(0);
+
+  const empanadaFlavors = useMemo(() => {
+    return empanadas.filter((e) => !e.upsell); // sabores individuales (sin docena/media)
+  }, []);
 
   // 🔔 Horario
   useEffect(() => {
@@ -45,7 +66,6 @@ function App() {
         "sabado",
       ];
       const dayName = days[now.getDay()];
-
       const configDia = clientConfig.horario.dias[dayName];
 
       if (!configDia || !configDia.abierto) {
@@ -76,9 +96,10 @@ function App() {
     return () => clearInterval(id);
   }, []);
 
-  const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
+  const cartCount = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
 
-  const addToCart = (product, { fromUpsell = false } = {}) => {
+  // ✅ agregar producto normal
+  const addToCart = (product) => {
     if (isClosed && clientConfig.horario?.enabled) {
       alert(
         clientConfig.horario.mensajeCerrado ||
@@ -87,62 +108,150 @@ function App() {
       return;
     }
 
-    // Agregar al carrito
-    setCart((prev) => {
-      const existing = prev.find((item) => item.id === product.id);
-      if (existing) {
-        return prev.map((item) =>
-          item.id === product.id ? { ...item, qty: item.qty + 1 } : item
-        );
-      }
-      return [...prev, { ...product, qty: 1 }];
-    });
+    // ✅ PACKS empanadas (docena / media)
+    const isEmpanadaPack =
+      product.id === "emp-docena" || product.id === "emp-media-docena";
 
-    // Categorías que disparan el modal de extras
-    const mainCategories = [
-      "Pizzas",
-      "Hamburguesas",
-      "Sándwiches",
-      "Sandwiches",
-      "Milanesas",
-      "Combos",
-    ];
+    if (isEmpanadaPack) {
+      const size = product.id === "emp-docena" ? 12 : 6;
+      const lineId = uid();
 
-    const shouldOpenUpsell =
-      !fromUpsell &&
-      !product.noExtras && // 👈 respeta las pizzas sin extras
-      (mainCategories.includes(product.category) || product.upsell === true);
+      setCart((prev) => [
+        ...prev,
+        {
+          ...product,
+          lineId,
+          qty: 1,
+          pack: { size, items: {} },
+        },
+      ]);
 
-    if (shouldOpenUpsell) {
       setLastProduct(product);
+      setActiveLineId(lineId);
+      setUpsellMode("pack");
+      setRequiredPackCount(size);
+      setShowUpsell(true);
+      return;
+    }
 
-      // 👇 Si es la pizza "Mitad y Mitad", usamos la lista especial
+    // ✅ PIZZAS: se agregan como "línea única" para poder tener extras por pizza
+    const isPizza = product.category === "Pizzas";
+
+    if (isPizza && !product.noExtras) {
+      const lineId = uid();
+      setCart((prev) => [
+        ...prev,
+        { ...product, lineId, qty: 1, extras: [] }, // 👈 extras pegados a esta pizza
+      ]);
+
+      setLastProduct(product);
+      setActiveLineId(lineId);
+
       if (product.id === "pizza-mitad") {
+        setUpsellMode("mitad");
         setUpsellItems(extrasMitad);
       } else {
+        setUpsellMode("extras");
         setUpsellItems(extrasPizza);
       }
 
       setShowUpsell(true);
+      return;
     }
+
+    // ✅ otros productos: se acumulan por id (como venías)
+    setCart((prev) => {
+      const existing = prev.find((item) => item.id === product.id && !item.lineId);
+      if (existing) {
+        return prev.map((item) =>
+          item.id === product.id && !item.lineId
+            ? { ...item, qty: (item.qty || 1) + 1 }
+            : item
+        );
+      }
+      return [...prev, { ...product, qty: 1 }];
+    });
   };
 
-  const removeFromCart = (id) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
-  };
+  // ✅ Toggle extra sobre la pizza seleccionada (activeLineId)
+  const toggleExtraOnActiveLine = (extraItem) => {
+    if (!activeLineId) return;
 
-  const changeQty = (id, newQty) => {
-    if (newQty <= 0) return;
+    const PREP_IDS = new Set([
+      "al-molde",
+      "ala-piedra",
+      "al-molde-mitad",
+      "ala-piedra-mitad",
+    ]);
+
     setCart((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, qty: newQty } : item))
+      prev.map((line) => {
+        if (line.lineId !== activeLineId) return line;
+        const extras = Array.isArray(line.extras) ? line.extras : [];
+
+        const exists = extras.some((x) => x.id === extraItem.id);
+
+        // si es preparación (molde/piedra) => solo puede haber 1 seleccionado
+        if (PREP_IDS.has(extraItem.id)) {
+          const withoutPrep = extras.filter((x) => !PREP_IDS.has(x.id));
+          if (exists) {
+            // si ya estaba, lo quito
+            return { ...line, extras: withoutPrep };
+          }
+          // lo pongo como único de preparación
+          return { ...line, extras: [...withoutPrep, extraItem] };
+        }
+
+        // extras comunes => toggle normal
+        if (exists) {
+          return { ...line, extras: extras.filter((x) => x.id !== extraItem.id) };
+        }
+        return { ...line, extras: [...extras, extraItem] };
+      })
     );
   };
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  // ✅ confirmar pack empanadas
+  const handleConfirmEmpanadaPack = (itemsObj) => {
+    setCart((prev) =>
+      prev.map((item) => {
+        if (item.lineId !== activeLineId) return item;
+        return {
+          ...item,
+          pack: { ...item.pack, items: itemsObj },
+        };
+      })
+    );
 
-  const handleAddFromUpsell = (product) => {
-    addToCart(product, { fromUpsell: true });
+    setShowUpsell(false);
+    setActiveLineId(null);
+    setRequiredPackCount(0);
   };
+
+  const removeFromCart = (idOrLineId) => {
+    setCart((prev) =>
+      prev.filter((item) => item.id !== idOrLineId && item.lineId !== idOrLineId)
+    );
+  };
+
+  const changeQty = (idOrLineId, newQty) => {
+    if (newQty <= 0) return;
+    setCart((prev) =>
+      prev.map((item) => {
+        if (item.id === idOrLineId || item.lineId === idOrLineId) {
+          return { ...item, qty: newQty };
+        }
+        return item;
+      })
+    );
+  };
+
+  // ✅ total incluye extras por línea
+  const total = cart.reduce((sum, item) => {
+    const qty = item.qty || 1;
+    const extrasSum = (item.extras || []).reduce((a, e) => a + (e.price || 0), 0);
+    return sum + (item.price + extrasSum) * qty;
+  }, 0);
 
   return (
     <div className="bg-body-tertiary min-vh-100">
@@ -156,19 +265,13 @@ function App() {
 
       <HeroCarousel />
 
-      <main
-        className="py-5"
-        id="pedido"
-        style={{ marginTop: "0px", paddingBottom: "60px" }}
-      >
+      <main className="py-5" id="pedido" style={{ paddingBottom: "60px" }}>
         <div className="container-fluid px-4 px-lg-5">
           <div className="row">
-            {/* Menú */}
             <div className="col-12 col-lg-7 mb-4 mb-lg-0">
               <Menu onAddToCart={addToCart} isClosed={isClosed} />
             </div>
 
-            {/* Carrito + datos + botón verde WhatsApp */}
             <section id="cart" className="col-12 col-lg-5">
               <Cart
                 cart={cart}
@@ -193,7 +296,7 @@ function App() {
           © {new Date().getFullYear()}{" "}
           Desarrollado por{" "}
           <a
-            href="https://magozitsolutions.netlify.app/gopedidos"
+            href="https://gopedidos-psi.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-decoration-none text-info"
@@ -203,16 +306,21 @@ function App() {
         </small>
       </footer>
 
-      {/* Separador solo mobile */}
       <div className="d-md-none" style={{ height: "64px" }} />
 
-      {/* Modal de sugerencias */}
       <UpsellModal
         show={showUpsell}
         onClose={() => setShowUpsell(false)}
-        upsellItems={upsellItems}
-        onAdd={handleAddFromUpsell}
+        mode={upsellMode}
         lastProduct={lastProduct}
+        upsellItems={upsellItems}
+        empanadaFlavors={empanadaFlavors}
+        requiredCount={requiredPackCount}
+        // 👇 ahora NO “agrega al carrito”, sino que lo pega a la pizza activa
+        onToggleExtra={toggleExtraOnActiveLine}
+        // 👇 para pintar seleccionados
+        activeLine={cart.find((x) => x.lineId === activeLineId) || null}
+        onConfirmEmpanadaPack={handleConfirmEmpanadaPack}
       />
     </div>
   );

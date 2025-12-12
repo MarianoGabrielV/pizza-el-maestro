@@ -3,7 +3,7 @@ export const clientConfig = {
   nombre: "Pizzería El Maestro",          // Nombre del local
   tipo: "pizzeria",                     // pizzeria | hamburgueseria | heladeria | etc.
 
-  whatsapp: "+5491132935209",           // Teléfono del negocio (formato internacional)
+  whatsapp: "5491132935209",           // Teléfono del negocio (formato internacional)
 
   logo: "/images/elmaestro.png",    // Ruta dentro de /public (ej: public/images/logo-pizzeria.png)
 
