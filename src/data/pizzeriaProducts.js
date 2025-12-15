@@ -1,30 +1,30 @@
 // PIZZAS
 export const pizzas = [
-   {
+  {
     id: "pizza-muzarella",
     name: "Muzzarella",
     category: "Pizzas",
     description: "Salsa de tomate, muzza, aceitunas y orégano.",
     price: 12000,
     img: "/images/pizzas/pizza-muzarella.png",
-  },{
-  id: "pizza-faina", 
-  name: "Faina Completa",
-  category: "Pizzas",
-  description: "Faina Completa.",
-  price: 9000,
-  img: "/images/pizzas/faina.jpg",
-  noExtras: true,          // 👈 NO mostrar extras
-},
-{
-  id: "pizza-faina-por",
-  name: "Faina por Porciones",
-  category: "Pizzas",
-  description: "Faina por porciones.",
-  price: 1200,
-  img: "/images/pizzas/fainapor.jpg",
-  noExtras: true,          // 👈 NO mostrar extras
-},{
+  }, {
+    id: "pizza-faina",
+    name: "Faina Completa",
+    category: "Pizzas",
+    description: "Faina Completa.",
+    price: 9000,
+    img: "/images/pizzas/faina.jpg",
+    noExtras: true,          // 👈 NO mostrar extras
+  },
+  {
+    id: "pizza-faina-por",
+    name: "Faina por Porciones",
+    category: "Pizzas",
+    description: "Faina por porciones.",
+    price: 1200,
+    img: "/images/pizzas/fainapor.jpg",
+    noExtras: true,          // 👈 NO mostrar extras
+  }, {
     id: "pizza-mitad",
     name: "Mitad y Mitad",
     category: "Pizzas",
@@ -32,7 +32,7 @@ export const pizzas = [
     price: 0,
     img: "/images/pizzas/mitad.png",
   },
-   {
+  {
     id: "pizza-jamon",
     name: "Jamon",
     category: "Pizzas",
@@ -40,7 +40,7 @@ export const pizzas = [
     price: 13500,
     img: "/images/pizzas/Pizza-Jamon.png",
   },
-   {
+  {
     id: "pizza-verdura",
     name: "Verdura",
     category: "Pizzas",
@@ -64,7 +64,7 @@ export const pizzas = [
     price: 15000,
     img: "/images/pizzas/calabresa.png",
   },
-   {
+  {
     id: "pizza-jamon-morron",
     name: "Jamon y Morron",
     category: "Pizzas",
@@ -72,7 +72,7 @@ export const pizzas = [
     price: 15000,
     img: "/images/pizzas/morron-jamon.png",
   },
-   {
+  {
     id: "pizza-napo-jamon",
     name: "Napolitana con Jamon",
     category: "Pizzas",
@@ -80,7 +80,7 @@ export const pizzas = [
     price: 18500,
     img: "/images/pizzas/napoconjamon.jpg",
   },
-   {
+  {
     id: "pizza-roquefort",
     name: "Roquefort",
     category: "Pizzas",
@@ -88,7 +88,7 @@ export const pizzas = [
     price: 17000,
     img: "/images/pizzas/roquefort.jpg",
   },
-   {
+  {
     id: "pizza-roquefort-jamon",
     name: "Roquefort con Jamon",
     category: "Pizzas",
@@ -96,7 +96,7 @@ export const pizzas = [
     price: 18500,
     img: "/images/pizzas/ryj.png",
   },
-   {
+  {
     id: "pizza-primavera",
     name: "Primavera",
     category: "Pizzas",
@@ -104,7 +104,7 @@ export const pizzas = [
     price: 17500,
     img: "/images/pizzas/primavera.png",
   },
-   {
+  {
     id: "pizza-cheddar",
     name: "Cheddar",
     category: "Pizzas",
@@ -112,7 +112,7 @@ export const pizzas = [
     price: 16000,
     img: "/images/pizzas/chedar.jpg",
   },
-   {
+  {
     id: "pizza-muzarella-caballo",
     name: "Muzzarella a Caballo",
     category: "Pizzas",
@@ -120,7 +120,7 @@ export const pizzas = [
     price: 18000,
     img: "/images/pizzas/acaballo.jpg",
   },
-   {
+  {
     id: "pizza-muzarella-fritas",
     name: "Muzzarella con Fritas",
     category: "Pizzas",
@@ -128,7 +128,7 @@ export const pizzas = [
     price: 17000,
     img: "/images/pizzas/papaspng.png",
   },
-   {
+  {
     id: "pizza-fugarella",
     name: "Fugarella",
     category: "Pizzas",
@@ -152,7 +152,7 @@ export const pizzas = [
     price: 18000,
     img: "/images/pizzas/fyj.jpg",
   },
-   {
+  {
     id: "pizza-muzarella-huevo",
     name: "Muzzarella con Huevo Picado",
     category: "Pizzas",
@@ -160,23 +160,32 @@ export const pizzas = [
     price: 13000,
     img: "/images/pizzas/huevopicado.jpg",
   },
-   {
+  {
+    id: "pizza-colo",
+    name: "Pizza Colonial",
+    category: "Pizzas",
+    description: "Salsa de tomate, Cebolla caramelizada, Muzza, Panceta, Aceitunas Verdes.",
+    price: 111111,
+    img: "/images/pizzas/",
+
+  },
+  {
     id: "pizza-calzones-napolitano",
     name: "Calzones Napolitano",
     category: "Pizzas",
     description: "Jamon, Muzza y Tomate.",
     price: 15000,
     img: "/images/pizzas/calzo.jpeg",
-    noExtras: true,  
+    noExtras: true,
   },
-   {
+  {
     id: "pizza-calzones-calabresa",
     name: "Calzones Calabresa",
     category: "Pizzas",
     description: "Muzza, Longaniza y Tomate.",
     price: 15000,
     img: "/images/pizzas/calzo.jpeg",
-    noExtras: true,  
+    noExtras: true,
   },
   {
     id: "pizza-calzones-roque",
@@ -185,9 +194,9 @@ export const pizzas = [
     description: "Jamon, Roquefort y Morrones.",
     price: 15000,
     img: "/images/pizzas/calzo.jpeg",
-    noExtras: true,  
-  },
-  
+    noExtras: true,
+  }
+
   // agregás más pizzas...
 ];
 
@@ -293,13 +302,13 @@ export const milanesas = [
     description: "Clásica milanesa de carne en Sandwich.",
     price: 9000,
     img: "/images/mila/",
-  },{
+  }, {
     id: "mila-plato",
     name: "Milanesas con Papas Fritas",
     description: "Milanesas al plato con Papas Fritas",
     price: 12000,
     img: "/images/mila/milaalplato.png",
-  },{
+  }, {
     id: "mila-plato-napo",
     name: "Milanesa a la Napolitana al plato con Papas Fritas",
     description: "Milanesa a la Napolitana al plato con Papas Fritas.",
@@ -312,50 +321,50 @@ export const milanesas = [
     description: "Porción de papas fritas tradicionales con Chedar, Panceta y Verdeo.",
     price: 14000,
     img: "/images/mila/chedarypanceta.png",
-  },{
+  }, {
     id: "papas1-con-chedar-panceta-medianas",
     name: "Papas con Chedar y Panceta Medianas",
     description: "Porción de papas fritas tradicionales con Chedar, Panceta y Verdeo.",
     price: 11000,
     img: "/images/mila/chedarypanceta.png",
-  },{
+  }, {
     id: "papas1-con-chedar-panceta-medianas",
     name: "Papas con Chedar y Panceta Chicas",
     description: "Porción de papas fritas tradicionales con Chedar, Panceta y Verdeo.",
     price: 8500,
     img: "/images/mila/chedarypanceta.png",
   },
-{
+  {
     id: "papas1-grandes",
     name: "Papas fritas Grandes",
     description: "Porción de papas fritas tradicionales Grandes.",
     price: 11000,
     img: "/images/mila/papas.jpg",
-  },{
+  }, {
     id: "papas1-medianas",
     name: "Papas fritas Medianas",
     description: "Porción de papas fritas tradicionales Medianas.",
     price: 8500,
     img: "/images/mila/papas.jpg",
-  },{
+  }, {
     id: "papas1-chicas",
     name: "Papas fritas Chicas",
     description: "Porción de papas fritas tradicionales Chicas.",
     price: 6000,
     img: "/images/mila/papas.jpg",
-  },{
+  }, {
     id: "sand-mila",
     name: "Sanwich de Milanesa",
     description: "Milanesa de carne, Lechuga y Tomate",
     price: 13000,
     img: "/images/mila/sanwichlt.jpg",
-  },{
+  }, {
     id: "sand-mila-jyq",
     name: "Sanwich de Milanesa",
     description: "Milanesa de carne, Jamon y Queso",
     price: 13000,
     img: "/images/mila/",
-  },{
+  }, {
     id: "sand-mila-completo",
     name: "Sanwich de Milanesa Completo",
     description: "Milanesa de carne, Lechuga, Tomate, Jamon y Queso con Papas Fritas.",
@@ -366,21 +375,21 @@ export const milanesas = [
 
 // POSTRES
 export const postres = [
- // {
+  // {
   //  id: "flan-casero",
-   // name: "Flan casero",
-   // category: "Postres",
-    //description: "Flan casero con dulce de leche o crema.",
-    //price: 2000,
-    //img: "/images/postres/flan.png",
+  // name: "Flan casero",
+  // category: "Postres",
+  //description: "Flan casero con dulce de leche o crema.",
+  //price: 2000,
+  //img: "/images/postres/flan.png",
   //},
   //{
-    //id: "helado-1k",
-    //name: "Helado 1kg",
-    //category: "Postres",
-    //description: "Varios sabores a elección.",
-    //price: 4500,
-    //img: "/images/postres/helado.png",
+  //id: "helado-1k",
+  //name: "Helado 1kg",
+  //category: "Postres",
+  //description: "Varios sabores a elección.",
+  //price: 4500,
+  //img: "/images/postres/helado.png",
   //},
 ];
 
@@ -401,28 +410,28 @@ export const promos = [
     price: 32000,
     img: "/images/promo.png",
   },
-   {
+  {
     id: "promo-1-1",
     name: "1 Muzza y 1 Napolitana",
     description: "1 Muzza y 1 Napolitana.",
     price: 25000,
     img: "/images/promo.png",
   },
-   {
+  {
     id: "promo-1-jm",
     name: "1 Muzza y 1 J&M",
     description: "1 Muzza y 1 Jamon y Morron.",
     price: 25000,
     img: "/images/promo.png",
   },
-   {
+  {
     id: "promo-jm-napo",
     name: "1 J&M y 1 Napolitana",
     description: "Una Pizza J&M y Napolitana.",
     price: 28000,
     img: "/images/promo.png",
   },
-   {
+  {
     id: "promo-1-emp",
     name: "1 Muzza y 6 Empanadas",
     description: "1 Muzza y 6 Empanadas??????.",
